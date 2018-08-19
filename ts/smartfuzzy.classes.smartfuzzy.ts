@@ -2,6 +2,8 @@ import * as plugins from './smartfuzzy.plugins';
 
 export let standardExport = 'Hi there! :) This is an exported string';
 
+export type TDictionaryMap = { [key: string]: number };
+
 export class Smartfuzzy {
   dictionary: string[];
   constructor(dictionary: string[]) {
@@ -24,12 +26,12 @@ export class Smartfuzzy {
    * returns the closest match for a given string
    * @param stringArg
    */
-  getChangeScoreForString(stringArg) {
-    const dictionaryMap: { [key: string]: number } = {};
+  getChangeScoreForString(stringArg): TDictionaryMap {
+    const dictionaryMap: TDictionaryMap = {};
     for (const wordArg of this.dictionary) {
       dictionaryMap[wordArg] = plugins.leven(stringArg, wordArg);
     }
-    console.log(dictionaryMap);
+    return dictionaryMap;
   }
 
   getClosestMatchForString(stringArg: string) {
@@ -39,7 +41,7 @@ export class Smartfuzzy {
         name: wordArg
       });
     }
-    const options = {
+    const fuseOptions = {
       shouldSort: true,
       threshold: 0.6,
       location: 0,
@@ -48,8 +50,8 @@ export class Smartfuzzy {
       minMatchCharLength: 1,
       keys: ['name']
     };
-    const fuse = new plugins.fuseJs(fuseDictionary, options);
+    const fuse = new plugins.fuseJs(fuseDictionary, fuseOptions);
     const result = fuse.search(stringArg);
-    console.log(result);
+    return result;
   }
 }

@@ -14,11 +14,30 @@ tap.test('should create an instance of Smartfuzzy', async () => {
 });
 
 tap.test('should compute a score', async () => {
-  testSmartfuzzy.getChangeScoreForString('Apple');
+  const result = testSmartfuzzy.getChangeScoreForString('Apple');
+  console.log(result);
 });
 
 tap.test('should get closest match', async () => {
-  testSmartfuzzy.getClosestMatchForString('Apple');
+  const result = testSmartfuzzy.getClosestMatchForString('Apple');
+  console.log(result);
+});
+
+tap.test('should sort objects', async () => {
+  class Car {
+    constructor(public brand: string) {}
+  }
+
+  let testObjectSorter: smartfuzzy.ObjectSorter<Car>;
+
+  testObjectSorter = new smartfuzzy.ObjectSorter([
+    new Car('BMW'),
+    new Car('Mercedes Benz'),
+    new Car('Volvo')
+  ]);
+
+  const result = testObjectSorter.sort('Volvo', ['brand']);
+  console.log(result);
 });
 
 tap.start();
