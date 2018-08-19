@@ -34,7 +34,7 @@ export class Smartfuzzy {
     return dictionaryMap;
   }
 
-  getClosestMatchForString(stringArg: string) {
+  getClosestMatchForString(stringArg: string): string {
     const fuseDictionary: { name: string }[] = [];
     for (const wordArg of this.dictionary) {
       fuseDictionary.push({
@@ -51,7 +51,11 @@ export class Smartfuzzy {
       keys: ['name']
     };
     const fuse = new plugins.fuseJs(fuseDictionary, fuseOptions);
-    const result = fuse.search(stringArg);
-    return result;
+    const fuzzyResult = fuse.search(stringArg);
+    let closestMatch: string = null;
+    if(fuzzyResult.length > 0) {
+      closestMatch = fuzzyResult[0].name;
+    }
+    return closestMatch;
   }
 }
