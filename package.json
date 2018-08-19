@@ -1,6 +1,6 @@
 {
   "name": "@pushrocks/smartfuzzy",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "private": false,
   "description": "fuzzy match strings against word dictionaries/arrays",
   "main": "dist/index.js",
