@@ -1,0 +1,26 @@
+{
+  "name": "smartfuzzy",
+  "version": "1.0.1",
+  "private": false,
+  "description": "fuzzy match strings against word dictionaries/arrays",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "author": "Lossless GmbH",
+  "license": "MIT",
+  "scripts": {
+    "test": "(tstest test/)",
+    "format": "(gitzone format)",
+    "build": "(tsbuild)"
+  },
+  "devDependencies": {
+    "@gitzone/tsbuild": "^2.0.22",
+    "@gitzone/tstest": "^1.0.15",
+    "@pushrocks/tapbundle": "^3.0.5",
+    "@types/node": "^10.7.1"
+  },
+  "dependencies": {
+    "@types/leven": "^2.1.1",
+    "fuse.js": "^3.2.1",
+    "leven": "^2.1.0"
+  }
+}
